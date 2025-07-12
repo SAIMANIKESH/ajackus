@@ -2,7 +2,11 @@
 
   A modern, responsive Employee Directory built using **Vanilla JavaScript**, **Tailwind CSS v4**, and **localStorage** for persistence. This project allows you to add, edit, delete, search, sort, and filter employees — all in a clean and user-friendly interface.
 
-## 🔗 Links
+## 🔍 Preview
+- Video Drive Link - [View](https://drive.google.com/file/d/1y1BnWDjQqDNRcnPQ360Vjlt54m8Egumu/view?usp=sharing)
+- Git Repository Link - [View](https://github.com/SAIMANIKESH/ajackus)
+
+For Screenshots pls go to `public` folder attached there...
 
 ## 🚀 Setup & Run Instructions
 
@@ -20,8 +24,15 @@
         npm install -g live-server
         live-server 
       ```
+3. **Installation & Run the server**
+     ```
+      npm install
+      npm run dev
+    ```
 
-   Or just open `index.html` in your browser directly.
+  Open http://localhost:5173 in your browser to view the project.
+
+  OR open `index.html` in your browser directly.
 Works without any backend or build setup.
 
 ## 📂 Project Structure
