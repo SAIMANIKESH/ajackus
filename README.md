@@ -10,30 +10,33 @@ For Screenshots pls go to `public` folder attached there...
 
 ## 🚀 Setup & Run Instructions
 
-1. **Clone the repository**  
-   ```
-   git clone https://github.com/SAIMANIKESH/ajackus.git
-   cd ajackus 
-   ```
+Follow these steps to set up the project locally on your machine.
 
-2. **Install a simple dev server** (optional)
+**Prerequisites**
 
-      You can use any static server like live-server, http-server, or VS Code Live Preview. Example:
+Make sure you have the following installed on your machine:
 
-      ```
-        npm install -g live-server
-        live-server 
-      ```
-3. **Installation & Run the server**
-     ```
-      npm install
-      npm run dev
-    ```
+- [Git](https://git-scm.com/)
+- [Node.js](https://nodejs.org/en)
+- [npm](https://www.npmjs.com/) (Node Package Manager)
+
+**Cloning the Repository**
+
+```bash
+git clone https://github.com/SAIMANIKESH/ajackus.git
+```
+
+**Installation & Running the Project**
+
+Install the project dependencies using `npm` and run the project
+
+```bash
+cd ajackus
+npm install
+npm run dev
+```
 
   Open http://localhost:5173 in your browser to view the project.
-
-  OR open `index.html` in your browser directly.
-Works without any backend or build setup.
 
 ## 📂 Project Structure
 
@@ -84,7 +87,7 @@ Works without any backend or build setup.
 ## ⚙️ Tech Stack
 - JavaScript (ES6+)
 
-- TailwindCSS
+- Tailwind CSS
 
 - HTML5
 
