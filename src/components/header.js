@@ -2,33 +2,34 @@ import { employees, departments, roles } from '../constants';
 
 export function renderHeader(container) {
   container.innerHTML = `
-    <div class="flex flex-wrap items-center justify-between px-4 p-3 h-full gap-4">
-      <h1 class="text-xl font-bold">Employee Directory</h1>
-      <input type="search" id="headerSearch" placeholder="Search by name or email..." class="truncate p-2 px-3 border rounded w-48 md:w-60 lg:w-120" />
-      <button id="filterBtn" class="!px-6 bg-green-500 hover:bg-green-600 font-semibold text-white">Filter</button>
+    <div class="header-container">
+      <h1>Employee Directory</h1>
+      <input type="search" id="headerSearch" placeholder="Search by name or email..." />
+      <button id="filterBtn">Filter</button>
     </div>
 
-    <div id="filterPopup" class="absolute top-16 right-4 bg-white border shadow-lg p-4 rounded-md hidden z-40 w-72">
-      <label class="block text-sm mb-2">First Name
-        <input type="text" id="filterFirstName" class="w-full p-2 border rounded mt-1" />
+    <div id="filterPopup" class="hidden">
+      <h2>Filter Employees</h2>
+      <label> First Name
+        <input type="text" id="filterFirstName" />
       </label>
 
-      <label class="block text-sm mb-2">Department
-        <select id="filterDepartment" class="w-full p-2 border rounded mt-1">
+      <label> Department
+        <select id="filterDepartment">
           <option value="">All</option>
           ${departments.map(d => `<option value="${d}">${d}</option>`).join('')}
         </select>
       </label>
 
-      <label class="block text-sm mb-3">Role
-        <select id="filterRole" class="w-full p-2 border rounded mt-1">
+      <label class="!mb-5"> Role
+        <select id="filterRole">
           <option value="">All</option>
           ${roles.map(r => `<option value="${r}">${r}</option>`).join('')}
         </select>
       </label>
 
-      <div class="flex justify-end gap-2">
-        <button id="clearFilter" class="bg-gray-100 hover:bg-gray-200">Clear</button>
+      <div class="flex justify-end gap-3 font-normal">
+        <button id="clearFilter" class="bg-gray-100 hover:bg-gray-200">Reset</button>
         <button id="applyFilter" class="bg-blue-100 hover:bg-blue-200">Apply</button>
       </div>
     </div>
