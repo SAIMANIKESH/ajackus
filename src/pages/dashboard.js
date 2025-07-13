@@ -52,15 +52,15 @@ export function renderDashboard(data = filteredData) {
 
           <form id="addEmployeeForm" class="space-y-3">
             <label> First Name
-              <input type="text" name="firstName" class="setFocus" required />
+              <input type="text" name="firstName" placeholder="e.g. John" class="setFocus" required />
             </label>
 
             <label> Last Name
-              <input type="text" name="lastName" required />
+              <input type="text" name="lastName" placeholder="e.g. Doe" required />
             </label>
 
             <label> Email
-              <input type="email" name="email" required />
+              <input type="email" name="email" placeholder="e.g. john.doe@ajackus.com" required />
             </label>
 
             <label> Department

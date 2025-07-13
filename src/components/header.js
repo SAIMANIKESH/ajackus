@@ -4,14 +4,14 @@ export function renderHeader(container) {
   container.innerHTML = `
     <div class="header-container">
       <h1>Employee Directory</h1>
-      <input type="search" id="headerSearch" placeholder="Search by name or email..." autofocus />
+      <input type="search" id="headerSearch" placeholder="Search by name or email" autofocus />
       <button id="filterBtn">Filter</button>
     </div>
 
     <div id="filterPopup" class="hidden">
       <h2>Filter Employees</h2>
       <label> First Name
-        <input type="text" id="filterFirstName" />
+        <input type="text" id="filterFirstName" placeholder="e.g. John" />
       </label>
 
       <label> Department
