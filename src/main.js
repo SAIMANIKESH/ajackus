@@ -1,3 +1,6 @@
 import { renderDashboard } from './pages/dashboard.js';
 
-document.addEventListener('DOMContentLoaded', () =>  renderDashboard());
+const app = document.getElementById('app');
+document.addEventListener('DOMContentLoaded', () =>  {
+  if (app) renderDashboard();
+});
