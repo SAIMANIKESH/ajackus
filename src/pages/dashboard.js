@@ -52,7 +52,7 @@ export function renderDashboard(data = filteredData) {
 
           <form id="addEmployeeForm" class="space-y-3">
             <label> First Name
-              <input type="text" name="firstName" required />
+              <input type="text" name="firstName" class="setFocus" required />
             </label>
 
             <label> Last Name
@@ -139,6 +139,7 @@ export function renderDashboard(data = filteredData) {
     document.querySelector('.formText').textContent = 'Add Employee';
     document.querySelector('.addButton').textContent = 'Add';
     popup.classList.remove('hidden')
+    document.querySelector('.setFocus').focus();
   });
   cancelBtn.addEventListener('click', () => {
     popup.classList.add('hidden');

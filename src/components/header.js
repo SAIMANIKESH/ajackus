@@ -4,7 +4,7 @@ export function renderHeader(container) {
   container.innerHTML = `
     <div class="header-container">
       <h1>Employee Directory</h1>
-      <input type="search" id="headerSearch" placeholder="Search by name or email..." />
+      <input type="search" id="headerSearch" placeholder="Search by name or email..." autofocus />
       <button id="filterBtn">Filter</button>
     </div>
 
@@ -42,6 +42,7 @@ export function renderHeader(container) {
 
   filterBtn?.addEventListener('click', () => {
     filterPopup.classList.toggle('hidden');
+    document.getElementById('filterFirstName').focus();
   });
 
   document.addEventListener('click', (e) => {
