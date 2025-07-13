@@ -95,6 +95,7 @@ export function renderDashboard(data = filteredData) {
   const addBtn = document.getElementById('addEmployeeBtn');
   const cancelBtn = document.getElementById('cancelAddEmployee');
   const form = document.getElementById('addEmployeeForm');
+  const input = document.querySelector('.setFocus');
 
   const departmentSelect = form.elements['department'];
   const roleSelect = form.elements['role'];
@@ -139,7 +140,7 @@ export function renderDashboard(data = filteredData) {
     document.querySelector('.formText').textContent = 'Add Employee';
     document.querySelector('.addButton').textContent = 'Add';
     popup.classList.remove('hidden')
-    document.querySelector('.setFocus').focus();
+    if (input) input.focus();
   });
   cancelBtn.addEventListener('click', () => {
     popup.classList.add('hidden');
@@ -217,7 +218,7 @@ export function renderDashboard(data = filteredData) {
     form.dataset.editId = id;
 
     popup.classList.remove('hidden');
-
+    if (input) input.focus();
   };
   
   window.employees = employees;
