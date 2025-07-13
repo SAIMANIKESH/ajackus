@@ -3,6 +3,7 @@
   A modern, responsive Employee Directory built using **Vanilla JavaScript**, **Tailwind CSS v4**, and **localStorage** for persistence. This project allows you to add, edit, delete, search, sort, and filter employees — all in a clean and user-friendly interface.
 
 ## 🔍 Preview
+- Published App Link - [View](https://saimanikesh.github.io/ajackus)
 - Video Drive Link - [View](https://drive.google.com/file/d/1y1BnWDjQqDNRcnPQ360Vjlt54m8Egumu/view?usp=sharing)
 - Git Repository Link - [View](https://github.com/SAIMANIKESH/ajackus)
 
