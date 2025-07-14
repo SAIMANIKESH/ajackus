@@ -59,7 +59,6 @@ export function renderDashboard(data = filteredData) {
                 ${sortBy.map(d => `<option value="${d.value}">${d.name}</option>`).join('')}
               </select>
             </label>
-
           </div>
 
           <button id="addEmployeeBtn">Add Employee</button>
@@ -175,10 +174,12 @@ export function renderDashboard(data = filteredData) {
     const formData = Object.fromEntries(new FormData(form).entries());
 
     const existingId = form.dataset.editId || null;
-    const newEmp = { id: existingId ? existingId : crypto.randomUUID(), ...formData };
+    const newEmp = { 
+      id: existingId ? existingId : String(parseInt(data[data.length - 1].id)+1), 
+      ...formData
+    };
 
     const index = employees.findIndex(e => e.id === existingId);
-    console.log(index, existingId, newEmp);
     if (index !== -1) employees[index] = newEmp;
     else employees.push(newEmp);
 

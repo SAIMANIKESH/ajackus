@@ -8,7 +8,7 @@ export const sortBy = [
 
 export const employees = [
   {
-    id: crypto.randomUUID(),
+    id: '1',
     firstName: 'Aarav',
     lastName: 'Mehta',
     role: 'Frontend Developer',
@@ -16,7 +16,7 @@ export const employees = [
     email: 'aarav.mehta@ajackus.com',
   },
   {
-    id: crypto.randomUUID(),
+    id: '2',
     firstName: 'Riya',
     lastName: 'Shah',
     role: 'Product Designer',
@@ -24,7 +24,7 @@ export const employees = [
     email: 'riya.shah@ajackus.com',
   },
   {
-    id: crypto.randomUUID(),
+    id: '3',
     firstName: 'Karan',
     lastName: 'Joshi',
     role: 'Backend Engineer',
@@ -32,7 +32,7 @@ export const employees = [
     email: 'karan.joshi@ajackus.com',
   },
   {
-    id: crypto.randomUUID(),
+    id: '4',
     firstName: 'Sneha',
     lastName: 'Patel',
     role: 'Project Manager',
