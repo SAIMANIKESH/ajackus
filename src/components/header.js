@@ -1,10 +1,10 @@
-import { employees, departments, roles } from '../constants';
+import { departments, roles } from '../constants';
 
 export function renderHeader(container) {
   container.innerHTML = `
     <div class="header-container">
       <h1>Employee Directory</h1>
-      <input type="search" id="headerSearch" placeholder="Search by name or email" autofocus />
+      <input type="search" id="headerSearch" placeholder="Search by name or email" />
       <button id="filterBtn">Filter</button>
     </div>
 
@@ -36,14 +36,10 @@ export function renderHeader(container) {
   `;
 
   const searchInput = container.querySelector('#headerSearch');
-  const showSelect = document.getElementById('showCount');
   const filterBtn = container.querySelector('#filterBtn');
   const filterPopup = container.querySelector('#filterPopup');
 
-  filterBtn?.addEventListener('click', () => {
-    filterPopup.classList.toggle('hidden');
-    document.getElementById('filterFirstName').focus();
-  });
+  filterBtn?.addEventListener('click', () => filterPopup.classList.toggle('hidden'));
 
   document.addEventListener('click', (e) => {
     if (!filterPopup.contains(e.target) && !filterBtn.contains(e.target)) {
@@ -51,38 +47,21 @@ export function renderHeader(container) {
     }
   });
 
-  searchInput?.addEventListener('input', (e) => {
-    const keyword = e.target.value.trim().toLowerCase();
-    const filtered = employees.filter(emp =>
-      emp.firstName.toLowerCase().includes(keyword) ||
-      emp.lastName.toLowerCase().includes(keyword) ||
-      emp.email.toLowerCase().includes(keyword)
-    );
-    window.updateGrid?.(filtered, showSelect?.value || 'All');
-  });
+  searchInput?.addEventListener('input', () => window.applyAllFilters?.());
 
   const applyBtn = container.querySelector('#applyFilter');
   const clearBtn = container.querySelector('#clearFilter');
 
   applyBtn.addEventListener('click', () => {
-    const first = container.querySelector('#filterFirstName').value.toLowerCase();
-    const dep = container.querySelector('#filterDepartment').value;
-    const role = container.querySelector('#filterRole').value;
-
-    const filtered = employees.filter(emp =>
-      (!first || emp.firstName.toLowerCase().includes(first)) &&
-      (!dep || emp.department === dep) &&
-      (!role || emp.role === role)
-    );
-    window.updateGrid?.(filtered, showSelect?.value || 'All');
     filterPopup.classList.add('hidden');
+    window.applyAllFilters?.();
   });
 
   clearBtn.addEventListener('click', () => {
     container.querySelector('#filterFirstName').value = '';
     container.querySelector('#filterDepartment').value = '';
     container.querySelector('#filterRole').value = '';
-    window.updateGrid?.(employees, showSelect?.value || 'All');
+    window.applyAllFilters?.();
     filterPopup.classList.add('hidden');
   });
 }

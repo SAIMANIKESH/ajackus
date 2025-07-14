@@ -2,11 +2,39 @@ import { employees, count } from '../constants';
 import { renderEmployeeCard } from '../components/employeeCard.js';
 import { renderHeader } from '../components/header.js';
 
+const saved = JSON.parse(localStorage.getItem('filters'));
 const stored = JSON.parse(localStorage.getItem('employees'));
 if (stored?.length) employees.splice(0, employees.length, ...stored);
 
+function applyAllFilters() {
+  const search = document.getElementById('headerSearch')?.value.trim().toLowerCase();
+  const first = document.getElementById('filterFirstName')?.value.trim().toLowerCase();
+  const dep = document.getElementById('filterDepartment')?.value;
+  const role = document.getElementById('filterRole')?.value;
+  const sortBy = document.getElementById('sortBy')?.value;
+  const show = document.getElementById('showCount')?.value;
+
+  localStorage.setItem('filters', JSON.stringify({ search, first, dep, role, sortBy, show }));
+
+  let filtered = employees.filter(emp =>
+    (!first || emp.firstName.toLowerCase().includes(first)) &&
+    (!dep || emp.department === dep) &&
+    (!role || emp.role === role) &&
+    (!search || emp.firstName.toLowerCase().includes(search) || 
+      emp.lastName.toLowerCase().includes(search) || 
+      emp.email.toLowerCase().includes(search)
+    )
+  );
+
+  if (sortBy) filtered.sort((a, b) => a[sortBy].localeCompare(b[sortBy]));
+
+  const final = show === 'All' ? filtered : filtered.slice(0, parseInt(show));
+  window.updateGrid?.(final);
+}
+
+
 let filteredData = [...employees];
-let year = new Date().getFullYear();
+const year = new Date().getFullYear();
 
 export function renderDashboard(data = filteredData) {
   const app = document.getElementById('app');
@@ -122,12 +150,8 @@ export function renderDashboard(data = filteredData) {
     toShow.forEach((emp) => grid.appendChild(renderEmployeeCard(emp)));
   }
 
-  showSelect.addEventListener('change', () => updateGrid(data));
-  sortSelect.addEventListener('change', () => {
-    const sortBy = sortSelect.value;
-    if (sortBy) data.sort((a, b) => a[sortBy].localeCompare(b[sortBy]));
-    updateGrid(data);
-  });
+  showSelect.addEventListener('change', () => applyAllFilters());
+  sortSelect.addEventListener('change', () => applyAllFilters());
 
   popup.addEventListener('click', (e) => {
     if (e.target === popup) {
@@ -137,8 +161,8 @@ export function renderDashboard(data = filteredData) {
   });
 
   addBtn.addEventListener('click', () => {
-    document.querySelector('.formText').textContent = 'Add Employee';
-    document.querySelector('.addButton').textContent = 'Add';
+    app.querySelector('.formText').textContent = 'Add Employee';
+    app.querySelector('.addButton').textContent = 'Add';
     popup.classList.remove('hidden')
     if (input) input.focus();
   });
@@ -207,8 +231,8 @@ export function renderDashboard(data = filteredData) {
   window.editEmployee = (emp) => {
     const { id, firstName, lastName, email, department, role } = emp;
 
-    document.querySelector('.formText').textContent = 'Edit Employee';
-    document.querySelector('.addButton').textContent = 'Save';
+    app.querySelector('.formText').textContent = 'Edit Employee';
+    app.querySelector('.addButton').textContent = 'Save';
 
     form.elements['firstName'].value = firstName;
     form.elements['lastName'].value = lastName;
@@ -220,7 +244,17 @@ export function renderDashboard(data = filteredData) {
     popup.classList.remove('hidden');
     if (input) input.focus();
   };
+
+  if (saved) {
+    // document.getElementById('headerSearch').value = saved.search || '';
+    // document.getElementById('filterFirstName').value = saved.first || '';
+    // document.getElementById('filterDepartment').value = saved.dep || '';
+    // document.getElementById('filterRole').value = saved.role || '';
+    document.getElementById('sortBy').value = saved.sortBy || '';
+    document.getElementById('showCount').value = saved.show || '10';
+  }
   
   window.employees = employees;
   window.updateGrid = updateGrid;
+  window.applyAllFilters = applyAllFilters;
 }
