@@ -8,11 +8,11 @@ pnpm-debug.log*
 lerna-debug.log*
 
 node_modules
-dist/Ajackus.pdf
+dist/homePage.png
 dist-ssr
 *.local
 
-/public/Ajackus.pdf
+/Ajackus.pdf
 
 # Editor directories and files
 .vscode/*

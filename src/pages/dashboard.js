@@ -1,4 +1,4 @@
-import { employees, count } from '../constants';
+import { employees, count, sortBy } from '../constants';
 import { renderEmployeeCard } from '../components/employeeCard.js';
 import { renderHeader } from '../components/header.js';
 
@@ -56,9 +56,7 @@ export function renderDashboard(data = filteredData) {
             <label>Sort By:
               <select id="sortBy">
                 <option value="">None</option>
-                <option value="firstName">First Name</option>
-                <option value="lastName">Last Name</option>
-                <option value="email">Email</option>
+                ${sortBy.map(d => `<option value="${d.value}">${d.name}</option>`).join('')}
               </select>
             </label>
 

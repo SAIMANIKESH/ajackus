@@ -1,5 +1,11 @@
 export const count = [ '10', '25', '50', '100', 'All' ];
 
+export const sortBy = [
+  { value: 'firstName', name: 'First Name' },
+  { value: 'lastName', name: 'Last Name' },
+  { value: 'email', name: 'Email' },
+];
+
 export const employees = [
   {
     id: crypto.randomUUID(),
