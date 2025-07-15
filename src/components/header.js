@@ -3,7 +3,10 @@ import { departments, roles } from '../constants';
 export function renderHeader(container) {
   container.innerHTML = `
     <div class="header-container">
-      <h1>Employee Directory</h1>
+      <div class="flex-center gap-2">
+        <img src="logo.jpg" alt="logo" />
+        <h1>Employee Directory</h1>
+      </div>
       <input type="search" id="headerSearch" placeholder="Search by name or email" />
       <button id="filterBtn">Filter</button>
     </div>

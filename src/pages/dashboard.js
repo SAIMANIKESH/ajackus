@@ -2,7 +2,7 @@ import { employees, count, sortBy } from '../constants';
 import { renderEmployeeCard } from '../components/employeeCard.js';
 import { renderHeader } from '../components/header.js';
 
-const saved = JSON.parse(localStorage.getItem('filters'));
+// const saved = JSON.parse(localStorage.getItem('filters'));
 const stored = JSON.parse(localStorage.getItem('employees'));
 if (stored?.length) employees.splice(0, employees.length, ...stored);
 
@@ -14,7 +14,7 @@ function applyAllFilters() {
   const sortBy = document.getElementById('sortBy')?.value;
   const show = document.getElementById('showCount')?.value;
 
-  localStorage.setItem('filters', JSON.stringify({ search, first, dep, role, sortBy, show }));
+  // localStorage.setItem('filters', JSON.stringify({ search, first, dep, role, sortBy, show }));
 
   let filtered = employees.filter(emp =>
     (!first || emp.firstName.toLowerCase().includes(first)) &&
@@ -120,7 +120,6 @@ export function renderDashboard(data = filteredData) {
   const addBtn = document.getElementById('addEmployeeBtn');
   const cancelBtn = document.getElementById('cancelAddEmployee');
   const form = document.getElementById('addEmployeeForm');
-  const input = document.querySelector('.setFocus');
 
   const departmentSelect = form.elements['department'];
   const roleSelect = form.elements['role'];
@@ -161,7 +160,7 @@ export function renderDashboard(data = filteredData) {
     app.querySelector('.formText').textContent = 'Add Employee';
     app.querySelector('.addButton').textContent = 'Add';
     popup.classList.remove('hidden')
-    if (input) input.focus();
+    app.querySelector('.setFocus').focus();
   });
   cancelBtn.addEventListener('click', () => {
     popup.classList.add('hidden');
@@ -241,17 +240,16 @@ export function renderDashboard(data = filteredData) {
     form.dataset.editId = id;
 
     popup.classList.remove('hidden');
-    if (input) input.focus();
   };
 
-  if (saved) {
-    // document.getElementById('headerSearch').value = saved.search || '';
-    // document.getElementById('filterFirstName').value = saved.first || '';
-    // document.getElementById('filterDepartment').value = saved.dep || '';
-    // document.getElementById('filterRole').value = saved.role || '';
+  /* if (saved) {
+    document.getElementById('headerSearch').value = saved.search || '';
+    document.getElementById('filterFirstName').value = saved.first || '';
+    document.getElementById('filterDepartment').value = saved.dep || '';
+    document.getElementById('filterRole').value = saved.role || '';
     document.getElementById('sortBy').value = saved.sortBy || '';
     document.getElementById('showCount').value = saved.show || '10';
-  }
+  } */
   
   window.employees = employees;
   window.updateGrid = updateGrid;
