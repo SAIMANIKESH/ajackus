@@ -172,10 +172,39 @@ export function renderDashboard(data = filteredData) {
 
     const formData = Object.fromEntries(new FormData(form).entries());
 
+    // Capitalize names and lowercase email
+    const firstName = formData.firstName.trim().replace(/\b\w/g, l => l.toUpperCase());
+    const lastName = formData.lastName.trim().replace(/\b\w/g, l => l.toUpperCase());
+    const email = formData.email.trim().toLowerCase();
+    const department = formData.department;
+    const role = formData.role;
+
+    // Validations
+    const nameRegex = /^[A-Za-z\s]+$/;
+    const emailHasAtAndDot = /@.*\.com$/;
+    const emailHasLetter = /[A-Za-z]/;
+
+    if (!firstName || !nameRegex.test(firstName)) {
+      alert("⚠️ First name must only contain letters.");
+      return;
+    }
+    if (!lastName || !nameRegex.test(lastName)) {
+      alert("⚠️ Last name must only contain letters.");
+      return;
+    }
+    if (!emailHasAtAndDot.test(email) || !emailHasLetter.test(email)) {
+      alert("⚠️ Email must include '@', end with .com, and contain at least one letter.");
+      return;
+    }
+
     const existingId = form.dataset.editId || null;
-    const newEmp = { 
-      id: existingId ? existingId : String(parseInt(data[data.length - 1].id)+1), 
-      ...formData
+    const newEmp = {
+      id: existingId ? existingId : String(parseInt(data[data.length - 1]?.id || 0) + 1),
+      firstName,
+      lastName,
+      email,
+      department,
+      role
     };
 
     const index = employees.findIndex(e => e.id === existingId);
@@ -188,6 +217,7 @@ export function renderDashboard(data = filteredData) {
     popup.classList.add('hidden');
     renderDashboard(employees);
   });
+
 
   updateGrid(data);
 
